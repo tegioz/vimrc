@@ -92,6 +92,8 @@ Plug 'ap/vim-css-color'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'groenewege/vim-less'
 Plug 'mxw/vim-jsx'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 call plug#end()
 
 " ==================================
@@ -204,34 +206,41 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " ==================================
 let g:EasyMotion_smartcase = 1
 
-"==================================
+" ==================================
 " vim-json
 " https://github.com/elzr/vim-json
 " ==================================
 let g:vim_json_syntax_conceal = 0
 
-"==================================
+" ==================================
 " emmet-vim
 " https://github.com/mattn/emmet-vim
 " ==================================
 autocmd FileType html,css EmmetInstall
+autocmd BufReadPost *.tmpl EmmetInstall
 let g:user_emmet_leader_key = ','
 let g:user_emmet_install_global = 0
 
-"==================================
+" ==================================
 " delimitMate
 " https://github.com/Raimondi/delimitMate
 " ==================================
 let delimitMate_expand_cr = 1
 
-"==================================
+" ==================================
 " pgsql
 " https://github.com/lifepillar/pgsql.vim
 " ==================================
 let g:sql_type_default = 'pgsql'
 
-"==================================
+" ==================================
 " jsx
 " https://github.com/mxw/vim-jsx
 " ==================================
  let g:jsx_ext_required = 0
+
+" ==================================
+" vim-markdown
+" https://github.com/plasticboy/vim-markdown
+" ==================================
+let g:vim_markdown_folding_disabled = 1
