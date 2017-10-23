@@ -12,7 +12,6 @@ set backspace=indent,eol,start
 set completeopt-=preview
 set laststatus=2
 set hidden
-set wildignore+=*/vendor/*,*/bin/*,*/pkg/*,*.a,*.swp,*/node_modules/*
 set nohlsearch
 set clipboard=unnamed
 set mouse=a
@@ -29,6 +28,10 @@ colorscheme molokai
 let mapleader = ","
 
 map <C-n> :NERDTreeToggle<CR>
+map <C-p> :Files<CR>
+nmap <Leader>; :Files<CR>
+nmap <Leader>' :Tags<CR>
+nmap ; :Buffers<CR>
 nmap <leader>w <Plug>(easymotion-bd-w)
 nmap <leader>z <Plug>(easymotion-sn)
 nmap <leader>. gg=G''
@@ -67,7 +70,9 @@ Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-rhubarb'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
@@ -95,12 +100,6 @@ Plug 'mxw/vim-jsx'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 call plug#end()
-
-" ==================================
-" ctrlp
-" https://github.com/kien/ctrlp.vim
-" ==================================
-"let g:ctrlp_cmd = 'CtrlPMRU'
 
 " ==================================
 " vim-airline
