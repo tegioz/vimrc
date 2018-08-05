@@ -18,6 +18,7 @@ set mouse=a
 set diffopt+=vertical
 set splitright
 set termguicolors
+set updatetime=100
 filetype on
 syntax on
 colorscheme molokai
@@ -57,6 +58,13 @@ au FileType javascript nmap <leader>, :TernType<CR>
 au FileType javascript nmap <leader>f :TernDef<CR>
 au FileType javascript nmap <leader>r :TernRename<CR>
 au FileType javascript nmap <leader>s :TernRefs<CR>
+au FileType typescript nmap <leader>i :TsuImport<CR>
+au FileType typescript nmap <leader>d :TsuDefinition<CR>
+au FileType typescript nmap <leader>f :TsuTypeDefinition<CR>
+au FileType typescript nmap <leader>g :TsuImplementation<CR>
+au FileType typescript nmap <leader>s :TsuReferences<CR>
+au FileType typescript nmap <leader>r :TsuRenameSymbolC<CR>
+au FileType typescript nmap <leader>, :<C-u>echo tsuquyomi#hint()<CR>
 
 " ==================================
 " vim-plug
@@ -99,6 +107,9 @@ Plug 'groenewege/vim-less'
 Plug 'mxw/vim-jsx'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
+Plug 'Quramy/vim-js-pretty-template'
 call plug#end()
 
 " ==================================
@@ -243,3 +254,11 @@ let g:sql_type_default = 'pgsql'
 " https://github.com/plasticboy/vim-markdown
 " ==================================
 let g:vim_markdown_folding_disabled = 1
+
+" ==================================
+" tsuquyomi
+" https://github.com/Quramy/tsuquyomi
+" ==================================
+let g:tsuquyomi_completion_detail = 1
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
