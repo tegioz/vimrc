@@ -165,8 +165,10 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
 let g:go_fmt_fail_silently = 1
-let g:go_fmt_command = "gofmt"
+let g:go_fmt_command = "goimports"
 let g:go_metalinter_enabled = ['vet', 'vetshadow', 'gotype', 'deadcode', 'gocyclo', 'varcheck', 'structcheck', 'aligncheck', 'errcheck', 'ineffassign', 'interfacer', 'unconvert', 'goconst', 'gosimple', 'staticcheck']
+let g:go_info_mode = "gocode"
+let g:go_gocode_unimported_packages = 1
 
 " ==================================
 " tagbar
