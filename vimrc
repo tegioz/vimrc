@@ -110,6 +110,8 @@ Plug 'plasticboy/vim-markdown'
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
 Plug 'Quramy/vim-js-pretty-template'
+Plug 'rust-lang/rust.vim'
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 call plug#end()
 
 " ==================================
@@ -123,8 +125,9 @@ let g:airline_theme='molokai'
 " https://github.com/scrooloose/syntastic
 " ==================================
 let g:syntastic_check_on_wq = 0 
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go', 'rust'] }
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_rust_checkers = ['cargo']
 
 " ==================================
 " youcompleteme
@@ -178,8 +181,6 @@ let g:go_metalinter_command = 'golangci-lint'
 " tagbar
 " https://github.com/majutsushi/tagbar
 " ==================================
-"autocmd FileType go nested :TagbarOpen
-"let g:tagbar_left = 1
 let g:tagbar_width = 50
 let g:tagbar_singleclick = 1
 let g:tagbar_type_go = {
@@ -268,3 +269,27 @@ let g:vim_markdown_folding_disabled = 1
 let g:tsuquyomi_completion_detail = 1
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
+
+" ==================================
+" rust.vim
+" https://github.com/rust-lang/rust.vim
+" ==================================
+let g:rustfmt_autosave = 1
+
+" ==================================
+" LanguageClient-neovim
+" https://github.com/autozimu/LanguageClient-neovim
+" ==================================
+let g:LanguageClient_serverCommands = {
+\    'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls']
+\}
+
+function LC_maps()
+    if has_key(g:LanguageClient_serverCommands, &filetype)
+        nnoremap <buffer> <silent> <leader>, :call LanguageClient#textDocument_hover()<cr>
+        nnoremap <buffer> <silent> <leader>f :call LanguageClient#textDocument_definition()<CR>
+        nnoremap <buffer> <silent> <leader>r :call LanguageClient#textDocument_rename()<CR>
+    endif
+endfunction
+
+autocmd FileType * call LC_maps()
