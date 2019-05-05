@@ -62,8 +62,9 @@ au FileType typescript nmap <leader>i :TsuImport<CR>
 au FileType typescript nmap <leader>d :TsuDefinition<CR>
 au FileType typescript nmap <leader>f :TsuTypeDefinition<CR>
 au FileType typescript nmap <leader>g :TsuImplementation<CR>
-au FileType typescript nmap <leader>s :TsuReferences<CR>
 au FileType typescript nmap <leader>r :TsuRenameSymbolC<CR>
+au FileType typescript nmap <leader>s :TsuReferences<CR>
+au FileType typescript nmap <leader>z :YcmCompleter FixIt<CR>
 au FileType typescript nmap <leader>, :<C-u>echo tsuquyomi#hint()<CR>
 
 " ==================================
@@ -125,7 +126,7 @@ let g:airline_theme='molokai'
 " https://github.com/scrooloose/syntastic
 " ==================================
 let g:syntastic_check_on_wq = 0 
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go', 'rust'] }
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go', 'typescript', 'rust'] }
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_rust_checkers = ['cargo']
 
